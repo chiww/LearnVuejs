@@ -1,17 +1,12 @@
-# LearnVuejs
-Vuejs样例及笔记
-
-
-## chapter01 : start here
-
-指令: 将数据关联起来
-- `v-on:input="changeGreeting"`: 监听`input`事件，执行`changeGreeting`函数;
-  
-事件:
-- event: javascript 和 DOM 属性;
-
-
-```html
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>VueJS</title>
+	<link rel="stylesheet" href="">
+	<script src="../vue.js"></script>
+</head>
 <body>
 	<div id="app">
 		<input type="text" v-on:input="changeGreeting"></input>
@@ -32,12 +27,4 @@ Vuejs样例及笔记
 		})
 	</script>
 </body>
-```
-
-## chapter02: DOM INTERACTION (Vuejs与DOM交互)
-
-v-bind 不要用普通的HTML来渲染，绑定到属性中
-v-once 仅渲染一次，保持初始值
-v-html 使用html来渲染变量值
-
-
+</html>

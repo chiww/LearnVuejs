@@ -1,0 +1,31 @@
+
+<!-- Put this in the HTML section in JSFiddle! -->
+<script src="../vue.js"></script>
+
+<div id="app">
+    <h1 v-once>{{  title  }}</h1>
+	<p>{{ sayHello() }} - <a v-bind:href="link">Baidu</a></p>
+    <button v-on:click="changeTitle"></button>
+    <hr>
+    <p v-html="url"></p>
+</div>
+
+
+<script>
+	new Vue({
+		el: '#app',
+		data: {
+		    title: 'Hello world!',
+            link: 'http://www.baidu.com',
+            url: '<a href="http://www.baidu.com">Baidu</a>'
+		},
+        methods: {
+		    sayHello: function () {
+                return this.title
+            },
+            changeTitle: function () {
+                this.title = 'Change me !'
+            }
+        }
+	})
+</script>
