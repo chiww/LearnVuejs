@@ -36,7 +36,7 @@ Vuejs样例及笔记
 
 ## chapter02: DOM INTERACTION (Vuejs与DOM交互)
 
-v-bind 不要用普通的HTML来渲染，绑定到属性中
+v-bind 不要用普通的HTML来渲染，绑定到属性中(属性中是不允许直接插值的)
 v-once 仅渲染一次，保持初始值
 v-html 使用html来渲染变量值
 
