@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <hr>
+
+    <h2>4th</h2>
+    <button v-on:click="counter++">Increase</button>
+    <button v-on:click="counter--">Decrease</button>
+    <button v-on:click="secondCounter++">Increase second</button>
+    <p>Counter: {{  counter  }} / SecondCounter: {{  secondCounter  }}</p>
+    <p>Result: {{  result()  }} / Output: {{  output  }}</p>
+
+
+    <!--<hr>-->
+
+    <!--<h2>3th</h2>-->
+    <!--<button v-on:click="counter++">Increase</button>-->
+    <!--<button v-on:click="counter&#45;&#45;">Decrease</button>-->
+    <!--<button v-on:click="secondCounter++">Increase second</button>-->
+    <!--<p>Counter: {{  counter  }} / SecondCounter: {{  secondCounter  }}</p>-->
+    <!--<p>Result: {{  result()  }}</p>-->
+
+
+    <!--<hr>-->
+    <!---->
+    <!--<h2>2th</h2>-->
+    <!--<button v-on:click="counter++">Increase</button>-->
+    <!--<button v-on:click="counter&#45;&#45;">Decrease</button>-->
+    <!--<p>Counter: {{  counter  }}</p>-->
+    <!--<p>Result: {{  result()  }}</p>-->
+
+    <hr>
+
+    <!--<h2>1th</h2>-->
+    <!--<button v-on:click="increase">Increase</button>-->
+    <!--<button v-on:click="decrease">Decrease</button>-->
+    <!--<p>Counter: {{  counter  }}</p>-->
+    <!--<p>Result: {{  result  }}</p>-->
+
+
+
+
+
+</div>
+
+<script>
+
+    // 4th
+    // 为避免重复执行,引入computed属性，监听了变量的变化,仅当有数据变化时才执行函数，更新数据;
+    // 只有当不需要缓存，每次更新DOM都更新数据的时候才使用methods
+    new Vue({
+        el: '#app',
+        data: {
+            counter: 1,
+            secondCounter: 0
+        },
+        computed: {
+            output: function () {
+                console.log('Computed!!');
+                return this.counter > 5 ? 'Biger than 5' : 'Small than 5';
+            }
+        },
+        methods: {
+            result: function () {
+                console.log('Methods!!');
+                return this.counter > 5 ? 'Biger than 5' : 'Small than 5';
+            }
+        }
+
+    })
+
+
+    // 3th
+    // 新增一个函数secondCounter,result的结果与secondCounter无关，但每次仅变动secondCounter时，result函数都会执行;
+    // 因为vue不知道secondCounter变化是否会影响到result结果，所以当secondCounter变化时，都执行一次result;
+    // 具体可以看4th
+    //
+    // new Vue({
+    //     el: '#app',
+    //     data: {
+    //         counter: 1,
+    //         secondCounter: 0
+    //     },
+    //     methods: {
+    //         result: function () {
+    //             return this.counter > 5 ? 'Biger than 5' : 'Small than 5';
+    //         }
+    //     }
+    //
+    // })
+
+    // 2th
+    // 将result写成一个函数输出，不用担心不同地方对counter修改会影响最终的结果
+    //
+    // new Vue({
+    //     el: '#app',
+    //     data: {
+    //         counter: 1
+    //     },
+    //     methods: {
+    //         result: function () {
+    //             return this.counter > 5 ? 'Biger than 5' : 'Small than 5';
+    //         }
+    //     }
+    //
+    // })
+
+    // 1th
+    //  result的语句重复，每个counter变化的地方都要执行一次result执行，且不知道哪里会修改counter的值；不好管理
+    //
+    // new Vue({
+    //     el: '#app',
+    //     data: {
+    //         counter: 1,
+    //         result: ''
+    //     },
+    //     methods: {
+    //         increase: function () {
+    //             this.counter ++;
+    //             this.result = this.counter > 5 ? 'more 5' : 'small 5';
+    //         },
+    //         decrease: function () {
+    //             this.counter --;
+    //             this.result = this.counter > 5 ? 'more 5' : 'small 5';
+    //         }
+    //     }
+    //
+    // })
+
+
+
+
+</script>
+
+</body>
+</html>
