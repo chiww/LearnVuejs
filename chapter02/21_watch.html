@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <hr>
+
+    <h2>4th</h2>
+    <button v-on:click="counter++">Increase</button>
+    <button v-on:click="counter--">Decrease</button>
+    <button v-on:click="secondCounter++">Increase second</button>
+    <p>Counter: {{  counter  }} / SecondCounter: {{  secondCounter  }}</p>
+    <p>Result: {{  result()  }} / Output: {{  output  }}</p>
+
+
+</div>
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            counter: 1,
+            secondCounter: 0
+        },
+        // 监听counter,当发生改变时，执行setTimeout函数置为0
+        // watch可用于异步, computed不能用于异步;
+        watch: {
+          counter: function () {
+              var vm = this;
+              setTimeout(function () {
+                  vm.counter = 0;
+              }, 2000);
+          }
+        },
+        computed: {
+            output: function () {
+                console.log('Computed!!');
+                return this.counter > 5 ? 'Biger than 5' : 'Small than 5';
+            }
+        },
+        methods: {
+            result: function () {
+                console.log('Methods!!');
+                return this.counter > 5 ? 'Biger than 5' : 'Small than 5';
+            }
+        }
+
+    })
+
+
+</script>
+
+</body>
+</html>

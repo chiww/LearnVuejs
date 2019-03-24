@@ -1,0 +1,51 @@
+<script src="../vue.js"></script>
+
+<div id="app">
+
+    <div class="demo" @click="attachRed = !attachRed" :class="{red: attachRed}"></div>
+    <div class="demo" @click="attachRed = !attachRed" :class="divClass"></div>
+    <div class="demo"></div>
+
+</div>
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            attachRed: false
+        },
+        computed: {
+            divClass: function () {
+                return {
+                    red: this.attachRed,
+                    blue: !this.attachRed
+                }
+            }
+        }
+
+    })
+</script>
+
+
+<style>
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        display: inline-block;
+        margin: 10px;
+    }
+
+    .red {
+        background-color: red;
+    }
+
+    .greed {
+        background-color: green;
+    }
+
+    .blue {
+        background-color: blue;
+    }
+</style>

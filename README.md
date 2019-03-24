@@ -103,6 +103,64 @@ click 鼠标点击事件
 `v-model="name"` 同时监听并更新数据
 
 #### 20 使用计算来改变属性
-属性依赖的时候
+属性依赖变量的时候，其中一个变量发生变化，所有`methods`都会重复计算一次；
+为避免这种情况，使用`computed`,仅当`computed`内的变量发生变化时才重新计算
 
-`computed`存在computed的属性像在`data`调用一样，不用`()`
+注意：
+- `computed`存在computed的属性像在`data`调用一样，不用`()`
+
+
+#### 21 计算属性的替代: 观察
+可以处理异步，computed不能处理异步;
+把要监听的变量设为key，在函数中指定当key发生变更时需要执行的逻辑
+
+#### 22 使用缩写来节省时间
+
+- v-on : 监听事件  >>  `@` >> `@click`
+- v-bind : 绑定属性到HTML  >> `:`  >> `:href`
+
+#### 23 24 练习
+
+#### 25 CSS类动态样式 - 基础
+
+`:class="{'red': attachRed}` 绑定CSS属性，指定类名`red`, `attachRed`是一个bool值
+
+#### 26 CSS类动态样式 - 使用对象
+```html
+<div>
+<div class="demo" @click="attachRed = !attachRed" :class="divClass"></div>
+</div>
+
+<script>
+new Vue({
+    computed: {
+            divClass: function () {
+                return {
+                    red: this.attachRed,
+                    blue: !this.attachRed
+                }
+            }
+})
+</script>
+```
+通过computed计算，返回一个属性
+
+#### 27 CSS动态样式 - 使用命名
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
