@@ -1,0 +1,48 @@
+
+<script src="../vue.js"></script>
+
+<div id="app">
+    <ul>
+        <li v-for="ingredient in ingredients">{{ ingredient }}</li>
+    </ul>
+
+    <hr>
+
+    <ul>
+        <li v-for="(ingredient, index) in ingredients">{{ ingredient }} ({{ index }})</li>
+    </ul>
+
+    <template v-for="(ingredient, index) in ingredients">
+        <h1>{{ ingredient }}</h1>
+        <p>({{ index }})</p>
+    </template>
+
+    <hr>
+
+    <ul>
+        <li v-for="person in persons">
+            <div>{{ person.name }}</div>
+            <span v-for="(value, key, index) in person">{{ key }} : {{ value }} ({{ index }})</span>
+        </li>
+    </ul>
+
+    <hr>
+
+    <span v-for="n in 10"> {{ n }}</span>
+
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            ingredients: ['meat', 'fruit', 'cookies'],
+            persons: [
+                {name: 'max', age: 27, color: 'red'},
+                {name: 'anna', age: 'unknown', color: 'blue'},
+            ]
+        }
+    })
+
+</script>

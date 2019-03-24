@@ -1,0 +1,50 @@
+<script src="../vue.js"></script>
+
+<div id="app">
+
+
+    <div class="demo" :style="{'background-color': color}"></div>    <!---- 使用单引号指定CSS的属性,属性名中不允许连字符   ------>
+    <div class="demo" :style="{backgroundColor: color}"></div>       <!---- 使用驼峰指定CSS的属性   ------>
+    <div class="demo" :style="myStyle"></div>
+    <div class="demo" :style="[myStyle, {height: width + 'px'}]"></div>
+    <hr>
+    <input type="text" v-model="color">
+    <input type="text" v-model="width">
+    <button @click="addWidth">+ 10</button>
+</div>
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            color: 'green',
+            width: 100
+        },
+        computed: {
+            myStyle: function () {
+                return {
+                    backgroundColor: this.color,
+                    width: this.width + 'px'
+                }
+            }
+        },
+        methods: {
+            addWidth: function () {
+                this.width = this.width + 10;
+                return this.width
+            }
+        }
+    })
+</script>
+
+
+<style>
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        display: inline-block;
+        margin: 10px;
+    }
+</style>

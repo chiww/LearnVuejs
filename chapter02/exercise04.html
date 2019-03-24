@@ -1,0 +1,119 @@
+<script src="../vue.js"></script>
+
+<div id="exercise">
+    <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
+    <div>
+        <button @click="startEffect">Start Effect</button>
+        <div id="effect" :class="effectClasses"></div>
+    </div>
+    <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
+    <div :class="[float, 'blue', 'text-color']">I got no class :(</div>     <!---float: 先获取data中的变量的值再传值到此，其他两个加引号的是直接调用类名------->
+    <!-- 3) Let the user enter a class (create some example classes) and attach it -->
+    <hr>
+    <div>
+        <input type="text" v-model:class="userClass">
+        <div :class="[{visible: true}, userClass]"></div>   <!-------userClass是用户输入的类名，这里是字符串，字符串的值就是CSS的类名------>
+    </div>
+    <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
+    <hr>
+    <div>
+        <input type="text" v-model:value="userClass">
+        <input type="text" v-model:value="isVisible">
+        <div :class="[{visible: isVisible}, userClass]"></div>
+    </div>
+    <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
+    <div>
+        <input type="text" v-model:value="myStyle.backgroundColor">
+        <div :style="myStyle"></div>
+    </div>
+    <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
+    <hr>
+    <div>
+        <button v-on:click="startProgress">Start Progress</button>
+        <div :class="['bar']" :style="barStyle"></div>
+    </div>
+</div>
+
+
+<script>
+    new Vue({
+        el: '#exercise',
+        data: {
+            effectClasses: {
+                highlight: false,
+                shrink: true
+            },
+            float: 'float',
+            userClass: '',     // 用户输入的类名
+            isVisible: true,
+            myStyle: {
+                width: '100px',
+                height: '150px',
+                backgroundColor: 'gray'
+            },
+            barStyle: {
+                width: '0px',
+                backgroundColor: 'red'
+            }
+        },
+        methods: {
+            startEffect: function () {
+                var vm = this;
+                setInterval(function () {
+                    vm.effectClasses.highlight = !vm.effectClasses.highlight;
+                    vm.effectClasses.shrink = !vm.effectClasses.shrink;
+                },1000)
+            },
+            startProgress: function () {
+                var vm = this;
+                var w = 0;
+                setInterval(function () {
+                    w = w + 10;
+                    vm.barStyle.width = w + 'px';
+                },1000)
+            }
+        }
+
+    })
+
+</script>
+
+
+<style>
+
+    .highlight {
+        background-color: red;
+        width: 200px !important;
+        height: 100px !important;
+    }
+
+    .shrink {
+        background-color: gray;
+        width: 50px !important;
+        height: 200px !important;
+    }
+
+    .blue {
+        background-color: blue;
+    }
+
+    .float {
+        float: right;
+    }
+
+    .text-color {
+        color: yellow;
+    }
+
+    .visible {
+        width: 100px;
+        height: 50px;
+    }
+
+    .bar {
+        height: 20px;
+        width: 200px;
+        border: 1px solid black;
+    }
+
+</style>

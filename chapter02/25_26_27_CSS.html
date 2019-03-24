@@ -4,7 +4,8 @@
 
     <div class="demo" @click="attachRed = !attachRed" :class="{red: attachRed}"></div>
     <div class="demo" @click="attachRed = !attachRed" :class="divClass"></div>
-    <div class="demo"></div>
+    <div class="demo" :class="[color, {red: attachRed}]"></div>
+    <input type="text" v-model="color">
 
 </div>
 
@@ -13,7 +14,8 @@
     new Vue({
         el: '#app',
         data: {
-            attachRed: false
+            attachRed: false,
+            color: 'green'
         },
         computed: {
             divClass: function () {
@@ -41,7 +43,7 @@
         background-color: red;
     }
 
-    .greed {
+    .green {
         background-color: green;
     }
 

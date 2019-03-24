@@ -146,8 +146,65 @@ new Vue({
 通过computed计算，返回一个属性
 
 #### 27 CSS动态样式 - 使用命名
+- 可以直接指定类名，非bool值
+- 有两种方式选择元素，一种是类名; 另外一种是对象，其中key是类名, value是bool值；
+
+```html
+
+    <div class="demo" :class="[color, {red: attachRed}]"></div>
+    <input type="text" v-model="color">
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            attachRed: false,
+            color: 'green'
+        }
+    })
+</script>
+```
 
 
+##### 28 内联style设置动态样式
+除了可以指定类名， 也可以直接定义style样式
+```html
+
+    <div class="demo" :style="myStyle"></div>
+    <div class="demo" :style="[myStyle, {height: width + 'px'}]"></div>
+```
+
+## chapter03: 使用条件和列表渲染
+
+#### 2 用v-if来作条件渲染
+
+```html
+
+<div id="app">
+
+    <p v-if="show">You can see me!<span>hello</span></p>
+    <p v-else> Now you see me !</p>
+    <p>Do you also see me?</p>
+    <button @click="show = !show">switch</button>
+</div>
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            show: true
+        }
+    })
+
+```
+
+#### 3 
+
+`<template>` HTML5标签，不会在DOM中被渲染
+
+
+#### 11 监听事件
 
 
 

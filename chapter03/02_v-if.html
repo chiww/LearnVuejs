@@ -1,0 +1,33 @@
+
+
+<script src="../vue.js"></script>
+
+<div id="app">
+
+    <p v-if="show">You can see me!<span>hello</span></p>
+    <p v-else> Now you see me !</p>
+
+    <button @click="show = !show">switch</button>
+
+    <hr>
+
+    <template v-if="show">
+        <h1>Heading</h1>
+        <p> Inside template</p>
+    </template>
+
+    <p v-show="show">Do you also see me?</p>
+</div>
+
+
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            show: true
+        }
+    })
+
+</script>
