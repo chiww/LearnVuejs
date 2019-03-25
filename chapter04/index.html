@@ -12,42 +12,93 @@
         <div class="small-6 columns">
             <h1 class="text-center">YOU</h1>
             <div class="healthbar">
-                <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
-
+                <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;" :style="{width: manHealth + '%'}">
+                    {{  manHealth  }}
                 </div>
             </div>
         </div>
         <div class="small-6 columns">
             <h1 class="text-center">MONSTER</h1>
             <div class="healthbar">
-                <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
-
+                <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;" :style="{width: monHealth + '%'}">
+                    {{ monHealth }}
                 </div>
             </div>
         </div>
     </section>
-    <section class="row controls">
+    <section v-if="!isRunning" class="row controls">
         <div class="small-12 columns">
-            <button id="start-game">START NEW GAME</button>
+            <button id="start-game" @click="startGame">START NEW GAME</button>
         </div>
     </section>
-    <section class="row controls">
+    <section v-else class="row controls">
         <div class="small-12 columns">
-            <button id="attack">ATTACK</button>
-            <button id="special-attack">SPECIAL ATTACK</button>
-            <button id="heal">HEAL</button>
-            <button id="give-up">GIVE UP</button>
+            <button id="attack" @click="attack">ATTACK</button>
+            <button id="special-attack" @click="specialAttack">SPECIAL ATTACK</button>
+            <button id="heal" @click="heal">HEAL</button>
+            <button id="give-up" @click="giveUp">GIVE UP</button>
         </div>
     </section>
     <section class="row log">
         <div class="small-12 columns">
             <ul>
-                <li>
-
+                <li v-for="log in logs" :class="{}">
+                    <span> man hurt: {{ log.manHurt }} >> mon hurt: {{ log.monHurt }}</span>
                 </li>
             </ul>
         </div>
     </section>
 </div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            isRunning: false,
+            manHealth: 0,
+            monHealth: 0,
+            logs: []
+        },
+        computed: {
+            isWin: function () {
+                if (this.monHealth <= 0) {
+                    alert('You Win!!');
+                }
+                if (this.manHealth <= 0) {
+                    alert('You Failed!!')
+                }
+            }
+        },
+        methods: {
+            startGame: function () {
+                this.isRunning = true;
+                this.manHealth = 100;
+                this.monHealth = 100;
+            },
+            attack: function () {
+                var manHurt = Math.floor(Math.random() * 10);
+                var monHurt = Math.floor(Math.random() * 10);
+                this.manHealth -= manHurt;
+                this.monHealth -= monHurt;
+                this.logs.push({'manHurt': manHurt, 'monHurt': monHurt});
+                this.isWin()
+            },
+            specialAttack: function () {
+                
+            },
+
+            heal: function () {
+                var addHealth = Math.floor(Math.random() * 10 * 2);
+                this.manHealth += addHealth
+            },
+            
+            giveUp: function () {
+                this.isRunning = false;
+            }
+        }
+    })
+
+
+</script>
 </body>
 </html>
