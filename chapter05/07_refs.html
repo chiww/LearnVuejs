@@ -1,0 +1,29 @@
+<script src="../vue.js"></script>
+
+<div id="app">
+  <h1 ref="heading">{{ title }}</h1>
+  <button v-on:click="show" ref='myButton'>Show Paragraph</button>
+  <p v-if="showParagraph">This is not always visible</p>
+</div>
+
+
+<script>
+    var vm1 = new Vue({
+        el: app,
+        data: {
+            title: 'This is a title!'
+        },
+        methods: {
+            show: function () {
+                this.title = 'chanage other !';
+            },
+            showParagraph: function () {
+                return true
+            }
+        }
+    })
+
+    vm1.$refs.heading.innerText = 'refs text!!!!'
+    console.log(vm1.$refs.myButton.innerText)
+
+</script>

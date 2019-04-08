@@ -1,0 +1,78 @@
+<script src="../vue.js"></script>
+
+<div id="app1">
+  <h1 ref="heading">{{ title }}</h1>
+  <button v-on:click="show" ref='myButton'>Show Paragraph</button>
+  <p v-if="showParagraph">This is not always visible</p>
+</div>
+
+<hr>
+
+<div id="app2">
+    <h1 ref="heading">{{ title }}</h1>
+    <button v-on:click="show" ref='myButton'>Show Paragraph</button>
+    <p v-if="showParagraph">This is not always visible</p>
+</div>
+
+<hr>
+<div id="app3">
+</div>
+
+
+<hr>
+<div id="app4">
+    
+</div>
+
+<script>
+
+    // 1. 常见的挂载方式,用el指定CSS的选择器id
+    var vm1 = new Vue({
+        el: app1,     //   <<<<   直接指定id
+        data: {
+            title: 'This is a title!'
+        },
+        methods: {
+            show: function () {
+                this.title = 'chanage other !';
+            },
+            showParagraph: function () {
+                return true
+            }
+        }
+    })
+
+
+    // 2. 使用$mount挂载模板
+    var vm2 = new Vue({
+        // el: app2,     //   <<<<  此处没有使用el指定
+        data: {
+            title: 'This is a title!'
+        },
+        methods: {
+            show: function () {
+                this.title = 'chanage other !';
+            },
+            showParagraph: function () {
+                return true
+            }
+        }
+    });
+    vm2.$mount('#app2');    // <<<<<  使用mount挂载
+
+
+    // 3. 使用template挂载
+    var vm3 = new Vue({
+        template: '<h1>hello world!!!</h1>'
+    });
+    vm3.$mount('#app3');     // 使用mount挂载
+
+    // 4. 通过JavaScript语句赋值el
+    var vm4 = new Vue({
+        template: '<h1>hello world!!!</h1>'
+    });
+    vm4.$mount() 
+    document.getElementById('app4').appendChild(vm4.$el);
+
+    
+</script>

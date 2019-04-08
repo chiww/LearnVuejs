@@ -1,0 +1,25 @@
+<script src="../vue.js"></script>
+
+<div id="app">
+    <h1> {{ title }}</h1>
+    <hello></hello>
+    <hello></hello>
+    <hello></hello>
+</div>
+
+
+<script>
+
+    Vue.component('hello', {
+        template: '<h1> Hello !</h1>'
+    });
+
+    new Vue({
+        el: app,
+        data: {
+            title: 'title!!!'
+        }
+    })
+
+    
+</script>

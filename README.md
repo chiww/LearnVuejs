@@ -224,6 +224,115 @@ Vue 实例某种成都上就是一个DOM对象，与业务逻辑之间的中间�
 (像普通访问对象一样访问实例内的变量)
 
 #### 5 Vue是如何管理数据和方法的
+Vue对属性设置代理，在属性上设置了监听器，以及我们可以通过直接访问存储的Vue的实例vm1变量;
+
+#### 6 深入分析$el和$data $refs
+
+$el 控制HTML模板
+$data 保存数据   外部可以这样访问: vm1.$data.title
+
+#### 7 在你的模板中使用$refs
+
+refs不是HTML，是Vue关键字
+返回是一个JavaScript对象
+直接修改DOM，但没有修改Vue的模板，重新渲染后，会还原；
+
+```html
+<div id="app">
+  <h1 ref="heading">{{ title }}</h1>
+  <button v-on:click="show" ref='myButton'>Show Paragraph</button>
+  <p v-if="showParagraph">This is not always visible</p>
+</div>
+
+<script>
+vm1.$refs.heading.innerText = 'refs text!!!!'
+console.log(vm1.$refs.myButton.innerText)
+</script>
+
+```
+
+#### 8 去哪里可以学到更多的Vue API
+vuejs.org/api
+
+#### 9 挂载一个模板
+$符号是 Vue提供的
+
+
+#### 10 使用组件
+
+#### 11 一些模板的限制
+分两种：
+1. 使用模板(带HTML代码),受限制的浏览器，对大小写不敏感的问题；
+2. 使用预编译的，直接是JavaScript代码在浏览器执行；预编译的版本更小，执行速度更快;
+
+#### 12 Vue是怎么更新DOM的
+
+Vue >>>  虚拟DOM >> DOM
+
+#### 13 Vue实例的生命周期
+
+1. beforeCreate()
+2. created()
+3. beforeMount()
+4. beforeUpdate()
+5. update()
+6. beforeDestory()
+7. destoryed()
+
+#### 14 生命周期实战
+
+#### 15 本章总结
+THE VUE.JS INSTANCE
+
+ 
+## chapter 06: Webpack和Vue命令行，真实的开发流程
+
+#### 02 VUE CLI & WORKFLOWS
+
+#### 03 workflows 
+#### 04 Vue CLI
+
+获取Vue项目的模板，空白的项目模板
+
+```
+npm install -g vue-cli   # 全局安装
+```
+
+可以使用大量的可用模板
+
+- simple: index.html + Vue CDN import , 基本和使用JSfiddle一样
+- webpack-simple: Basic Webpack Workflow ，可以编译单一文件模板,SPA,可以使用ES6
+- webpack: Complex Webpack Workflow (incl Testing)
+- browserify/browserify-simple: Browserify Workflows
+
+#### 05 Vue命令行安装以及创建一个新的项目
+```
+sudo npm install -g vue-cli   # 使用npm来管理前端依赖,nodejs作为服务器
+vue init webpack-simple firproject
+cd firproject 
+npm install         # 拉取依赖，模板会生成package.json文件，此文件是管理依赖用的;
+npm run dev      # 启用一个供开发使用的服务器，会一直运行，会自动检测文件变更并重新编译；
+```
+#### 06 Webpack模板目录概述
+- .babelrc: 基本配置文件，是JavaScript最新版本ES6的转译器；把ES5转成ES6，用来支持新版本在旧版本上的运行;
+- index.html: 最后发布的文件，最后呈现出来的页面，但实际上只引入了一个Vue应用，和之前JSFiddle一样；此处引用的是webpack已经编译好的文件；位于dist/build.js的js文件；bundle意思是我们可以把代码拆分为多个文件，最后整合成一个打包好的文件；
+开发模式下看不到/dist文件，都保存在内存中；如果要看到dist文件，需要编译；
+- webpack.config.js: 负责所有创建工作，以及转码和设置创建过程，并且处理不同的文件类型；
+
+#### 07 理解".vue"后缀文件
+原生的DOM模板有限制，会全部DOM元素转换成JS来实现；
+- main.js: 当打包后的JS文件在index.html里被加载时,main.js是首先被执行的；这个地方加载Vue对象；
+```
+render: h => h(App)    # 获取el属性指定的DOM，但不分析模板；h是参数，实际上是之后要执行的函数，这个函数要接收的是要渲染的Vue模板；这个函数会自动渲染特定的模板，渲染el选择器指定的Vue程序运行的地方；
+```
+
+- .vue： Vue文件，含一个template、script、可选的style标签，这三者就有了有效的Vue文件，也就是“单文件模板”，这个文件模板和脚本逻辑分离
+
+#### 08 理解Vue文件中的对象
+
+#### 09 如何构建一个真正的可发布的应用
+
+#### 10 本章总结
 
 
 
