@@ -1,0 +1,44 @@
+<script src="../vue.js">
+
+</script>
+
+
+<div id="template">
+</div>
+
+<hr>
+<hr>
+
+<div id="app">
+    <my-cmp></my-cmp>
+    <my-cmp></my-cmp>
+</div>
+
+
+<script>
+new Vue({
+    el: '#template',
+    data: {
+        status: 'Critical'
+    },
+    //  直接使用`template`，仅对第一个元素有效，第二个元素起不会起作用，即使使用`class`选择器;
+    //  template是不可复用的
+    template: '<p>Server Status: {{ status }}</p>'
+})
+
+//  创建一个新的选择器
+Vue.component('my-cmp',{
+    // data会与根Vue对象冲突，因此此处必须是一个函数，返回一个新的对象，用来保存data，保证不与其他data冲突;
+    data: function() {                     
+        return {
+            status: 'Critical'
+            }
+    },
+    template: '<p>Server Status: {{ status }}</p>'
+});
+
+new Vue({
+    el: '#app'
+})
+
+</script>

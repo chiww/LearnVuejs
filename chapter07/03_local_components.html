@@ -1,0 +1,46 @@
+<script src="../vue.js">
+
+</script>
+
+<div id="app">
+    <my-cmp></my-cmp>
+    <my-cmp></my-cmp>
+</div>
+
+
+<script>
+
+// 全局注册组件
+// ------------
+// Vue.component('my-cmp',{
+//     // data会与根Vue对象冲突，因此此处必须是一个函数，返回一个新的对象，用来保存data，保证不与其他data冲突;
+//     data: function() {                     
+//         return {
+//             status: 'Critical'
+//             }
+//     },
+//     template: '<p>Server Status: {{ status }}</p>'
+// });
+
+//  局部注册组件
+//  ----------
+//  预先定义一个组件的属性
+var cmp = {
+    data: function() {                     
+        return {
+            status: 'Critical'
+            }
+    },
+    template: '<p>Server Status: {{ status }}</p>'
+}
+
+new Vue({
+    el: '#app',
+    
+    //  注册插件
+    components: {
+        'my-cmp': cmp
+    }
+})
+
+</script>
