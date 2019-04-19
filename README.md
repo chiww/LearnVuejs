@@ -352,6 +352,8 @@ render: h => h(App)    # 获取el属性指定的DOM，但不分析模板；h是�
 #### 05 在App.vue中间中“根组件“
 - main.js指定了App.vue中返回的值进行渲染
 - src中的App.vue是根对象，也可以算是一种组件，其data属性是一个函数;
+- exprot default 返回的不是一个组件，是一个对象;
+- 
 
 #### 06 创建一个组件
 
