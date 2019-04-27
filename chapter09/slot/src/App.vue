@@ -2,10 +2,20 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <app-quote>
-          <h2 slot="title">{{ quoteTitle }}</h2>
-          <p slot="content">A wonderful Quote</p>
-        </app-quote>
+        <button @click="selectedComponents = 'appQuote'">Quote</button>
+        <button @click="selectedComponents = 'appAuthor'">Author</button>
+        <button @click="selectedComponents = 'appNew'">New</button>
+
+<!--        动态加载-->
+        <keep-alive>
+          <componsents :is="selectedComponents"></componsents>
+        </keep-alive>
+<!--        静态加载插槽-->
+<!--        <app-quote>-->
+<!--          <h2 slot="title">{{ quoteTitle }}</h2>-->
+<!--&lt;!&ndash;          <h1 slot="subTitle">some</h1>&ndash;&gt;-->
+<!--          <p slot="content">A wonderful Quote</p>-->
+<!--        </app-quote>-->
       </div>
     </div>
   </div>
@@ -13,14 +23,20 @@
 
 <script>
 import Quote from './components/Quote.vue';
+import Author from './components/Author';
+import New from './components/New';
+
 export default {
   data: function() {
     return {
-      quoteTitle: 'The Quote!!'
+      quoteTitle: 'The Quote!!',
+      selectedComponents: 'appQuote'
     }
   },
   components: {
-    appQuote: Quote
+    appQuote: Quote,
+    appAuthor: Author,
+    appNew: New
   }
 };
 </script>

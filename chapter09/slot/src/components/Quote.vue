@@ -3,7 +3,7 @@
         <div>
             <slot name="title"></slot>
             <!-- 可以直接默认插槽的内容，如果没有从父组件传递值的话，就会使用默认的值 -->
-            <span style="color: blue;"><slot name="subTilte">This is SubTitle</slot></span>
+            <span style="color: blue;"><slot name="subTitle">This is SubTitle</slot></span>
         </div>
         <div>
             <slot name="content"></slot>
