@@ -437,8 +437,107 @@ render: h => h(App)    # 获取el属性指定的DOM，但不分析模板；h是�
 
 
 
+Mint UI
+基于 Vue.js 的移动端组件库
 
 
+Material Component Framework for Vue.js 2 https://vuetifyjs.com
+
+
+什么是 vonic ？
+一个基于 vue.js 和 ionic 样式的 UI 框架，用于快速构建移动端单页应用。
+
+
+bootstrap-vue ★1267 - 应用于Vuejs2的Twitter的Bootstrap 4组件
+
+
+## chapter16 路由
+
+#### 01 简介
+
+
+#### 02 配置VueJS路由
+
+
+#### 03 配置和加载路由
+- url中的`#`表示本地应用处理，非服务器处理
+
+
+#### 04 理由路由模式
+- 默认mode是hash模式
+- 使用'history'模式可以去掉URL中的#，但这样需要服务器也配置; webpack 已经自动实现了，不需要调整服务器
+- 服务器应该怎么配置，查看vue router 官方文档: https://router.vuejs.org/guide/essentials/history-mode.html#example-server-configurations
+
+```
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
+
+
+#### 05 路由链接导航
+**为什么不用<a>?**
+- 请求发送到服务器，会离开当前应用
+
+
+- 使用router-link 代替<a href></a>
+
+#### 06 我在哪里，定义活动链接
+- 会丢失样式，见样例
+
+#### 07 通过代码导航(强制导航)
+- 跳转的命令直接写在JavaScript中，通过push将下一跳跳到目标路径
+
+
+#### 08 配置路由参数
+
+
+#### 09 获取、使用路由参数
+
+#### 10 相应路由参数更改
+
+#### 11 配置子路由(嵌套路由)
+
+#### 12 嵌套路由导航
+
+#### 13 更动态配置路由链接
+
+
+#### 14 创建链接更好的方式-命名路由
+
+
+#### 15 使用查询参数
+
+#### 16 多路由视图
+
+
+#### 17 重定向
+
+#### 18 配置Catch ALl 路由通配符
+
+
+#### 19 路由动画过渡
+
+#### 20 传递 Hash fragment
+
+#### 21 控制卷屏行为
+
+
+#### 22 使用守卫来保护路由
+
+#### 23 使用beforeEnter守卫
+
+#### 24 使用beforeLeave守卫
+
+
+#### 25 路由加载
+
+
+#### 26 总结
+
+
+
+ 
 
 
 
